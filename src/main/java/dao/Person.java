@@ -1,6 +1,7 @@
 package dao;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -86,6 +87,13 @@ public class Person {
 
     public void setAddresses(Set<Address> addresses) {
         this.addresses = addresses;
+    }
+
+    public void addAddress(Address address){
+        if(this.addresses == null){
+            this.addresses = new HashSet<>(0);
+        }
+        addresses.add(address);
     }
 
     @Override

@@ -8,7 +8,7 @@ import service.command.PersonCommandService;
 import service.query.PersonQueryService;
 
 @Controller
-@RequestMapping(path = "people")
+@RequestMapping(path = "/people")
 public class MainController {
 
     private final PersonCommandService peopleCommandService;
@@ -19,7 +19,5 @@ public class MainController {
         this.peopleCommandService = personCommandService;
         this.personQueryService = personQueryService;
     }
-
-
 
 }
