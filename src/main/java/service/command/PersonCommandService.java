@@ -10,7 +10,6 @@ import javax.transaction.Transactional;
 import java.util.Objects;
 
 @Service
-@Transactional
 public class PersonCommandService {
 
     private PersonRepository personRepository;

@@ -13,12 +13,18 @@ public class Person {
     @Column(name = "PERSON_ID")
     private Long id;
 
+    @Column(name = "FIRST_NAME")
     private String firstName;
+    @Column(name = "LAST_NAME")
     private String lastName;
+    @Column(name = "SEX")
     private Enum sex;
+    @Column(name = "PHONE_NUMBER")
     private Integer phoneNumber;
+    @Column(name = "EMAIL_ADDRESS")
     private String emailAddress;
 
+    @Column(name = "ADDRESS")
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
     private Set<Address> addresses;
 

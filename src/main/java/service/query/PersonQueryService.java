@@ -9,7 +9,6 @@ import service.exception.PersonNotFoundException;
 import javax.transaction.Transactional;
 
 @Service
-@Transactional
 public class PersonQueryService {
 
     private PersonRepository personRepository;

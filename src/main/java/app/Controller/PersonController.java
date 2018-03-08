@@ -2,14 +2,9 @@ package app.Controller;
 
 import dao.Person;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import service.command.PersonCommandService;
-import service.exception.PersonNotFoundException;
 import service.query.PersonQueryService;
-
-import java.util.List;
 
 @RestController
 public class PersonController {
@@ -35,7 +30,5 @@ public class PersonController {
         return personQueryService.findAll();
     }
 
-//    @RequestMapping(path = "/add", method = RequestMethod.POST)
-//    public
 
 }
