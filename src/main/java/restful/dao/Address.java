@@ -1,4 +1,4 @@
-package dao;
+package restful.dao;
 
 import javax.persistence.*;
 

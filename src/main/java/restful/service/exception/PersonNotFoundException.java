@@ -1,4 +1,4 @@
-package service.exception;
+package restful.service.exception;
 
 public class PersonNotFoundException extends RuntimeException {
 }

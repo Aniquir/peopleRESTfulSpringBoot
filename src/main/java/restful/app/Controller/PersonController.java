@@ -1,12 +1,13 @@
-package app.Controller;
+package restful.app.Controller;
 
-import dao.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import service.command.PersonCommandService;
-import service.query.PersonQueryService;
+import restful.dao.Person;
+import restful.service.command.PersonCommandService;
+import restful.service.query.PersonQueryService;
 
 @RestController
+@RequestMapping(path = "/person")
 public class PersonController {
 
     private final PersonCommandService personCommandService;

@@ -1,12 +1,10 @@
-package service.query;
+package restful.service.query;
 
-import dao.Person;
-import dao.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import service.exception.PersonNotFoundException;
-
-import javax.transaction.Transactional;
+import restful.dao.Person;
+import restful.dao.PersonRepository;
+import restful.service.exception.PersonNotFoundException;
 
 @Service
 public class PersonQueryService {

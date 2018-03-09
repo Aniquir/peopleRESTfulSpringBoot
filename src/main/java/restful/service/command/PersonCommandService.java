@@ -1,13 +1,10 @@
-package service.command;
+package restful.service.command;
 
-import dao.Person;
-import dao.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import service.exception.PersonNotFoundException;
-
-import javax.transaction.Transactional;
-import java.util.Objects;
+import restful.dao.Person;
+import restful.dao.PersonRepository;
+import restful.service.exception.PersonNotFoundException;
 
 @Service
 public class PersonCommandService {
@@ -18,6 +15,7 @@ public class PersonCommandService {
     public PersonCommandService(PersonRepository personRepository) {
         this.personRepository = personRepository;
     }
+
 
     public Long create(Person person){
         personRepository.save(person);
