@@ -1,15 +1,17 @@
 package restful.dao;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "PERSON")
-public class Person {
+public class Person implements Serializable{
 
+    private static final long serialVersionUID = 1907454466274204564L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PERSON_ID")
     private Long id;
 
@@ -18,20 +20,20 @@ public class Person {
     @Column(name = "LAST_NAME")
     private String lastName;
     @Column(name = "SEX")
-    private Enum sex;
+    private String sex;
     @Column(name = "PHONE_NUMBER")
     private Integer phoneNumber;
     @Column(name = "EMAIL_ADDRESS")
     private String emailAddress;
 
     @Column(name = "ADDRESS")
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
-    private Set<Address> addresses;
+    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
+    private Set<Address> addresses = new HashSet<>();
 
     public Person() {
     }
 
-    public Person(String firstName, String lastName, Enum sex, Integer phoneNumber, String emailAddress) {
+    public Person(String firstName, String lastName, String sex, Integer phoneNumber, String emailAddress) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.sex = sex;
@@ -63,11 +65,11 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public Enum getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(Enum sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 

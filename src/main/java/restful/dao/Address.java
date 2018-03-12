@@ -1,13 +1,16 @@
 package restful.dao;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "ADDRESS")
-public class Address {
+public class Address implements Serializable{
+
+    private static final long serialVersionUID = 1281431330203638300L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String city;
@@ -15,8 +18,7 @@ public class Address {
     private String buildingNumber;
     private String flatNumber;
 
-    @ManyToOne
-    @JoinColumn(name = "PERSON_ID")
+    @OneToOne(mappedBy = "addresses")
     private Person person;
 
     public Address() {

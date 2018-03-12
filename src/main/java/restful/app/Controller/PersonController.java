@@ -49,7 +49,7 @@ public class PersonController {
 
         try{
             personCommandService.update(person);
-            return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
         } catch (PersonNotFoundException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
