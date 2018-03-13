@@ -24,7 +24,7 @@ public class PersonCommandService {
     }
 
     public void update(Person person){
-        Person dbPerson = personRepository.findOne(person.getId());
+        Person dbPerson = personRepository.findOneWithAddresses(person.getId());
 
         if(dbPerson == null){
             throw new PersonNotFoundException();
@@ -38,7 +38,7 @@ public class PersonCommandService {
     }
 
     public void delete(Long id){
-        Person person = personRepository.findOne(id);
+        Person person = personRepository.findOneWithAddresses(id);
 
         if (person == null){
             throw new PersonNotFoundException();

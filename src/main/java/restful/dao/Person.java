@@ -8,8 +8,9 @@ import java.util.Set;
 @Entity
 @Table(name = "PERSON")
 public class Person implements Serializable{
-
+// after good working of person_id with address, check this
     private static final long serialVersionUID = 1907454466274204564L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PERSON_ID")
@@ -27,7 +28,7 @@ public class Person implements Serializable{
     private String emailAddress;
 
     @Column(name = "ADDRESS")
-    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Address> addresses = new HashSet<>();
 
     public Person() {

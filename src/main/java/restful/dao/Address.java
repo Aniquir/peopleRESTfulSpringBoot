@@ -6,9 +6,8 @@ import java.io.Serializable;
 @Entity
 @Table(name = "ADDRESS")
 public class Address implements Serializable{
-
+    // after good working of person_id with address, check this
     private static final long serialVersionUID = 1281431330203638300L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,7 +17,8 @@ public class Address implements Serializable{
     private String buildingNumber;
     private String flatNumber;
 
-    @OneToOne(mappedBy = "addresses")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "person_id", nullable = false)
     private Person person;
 
     public Address() {
@@ -80,6 +80,7 @@ public class Address implements Serializable{
         this.person = person;
     }
 
+
     @Override
     public String toString() {
         return "Address{" +
@@ -88,7 +89,6 @@ public class Address implements Serializable{
                 ", street='" + street + '\'' +
                 ", buildingNumber='" + buildingNumber + '\'' +
                 ", flatNumber='" + flatNumber + '\'' +
-                ", person=" + person +
                 '}';
     }
 }

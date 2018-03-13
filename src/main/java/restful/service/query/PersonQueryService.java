@@ -17,11 +17,11 @@ public class PersonQueryService {
     }
 
     public Iterable<Person> findAll(){
-        return personRepository.findAll();
+        return personRepository.findAllWithAddresses();
     }
 
     public Person findById(Long id){
-        Person person = personRepository.findOne(id);
+        Person person = personRepository.findOneWithAddresses(id);
 
         if(person == null){
             throw new PersonNotFoundException();
