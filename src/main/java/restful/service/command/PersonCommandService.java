@@ -16,33 +16,34 @@ public class PersonCommandService {
         this.personRepository = personRepository;
     }
 
-
-    public Long create(Person person){
+    public void create(Person person) {
         personRepository.save(person);
-
-        return person.getId();
     }
 
-    public void update(Person person){
-        Person dbPerson = personRepository.findOneWithAddresses(person.getId());
+    public void update(Person person, Long id) {
+        Person dbPerson = personRepository.findOne(id);
 
-        if(dbPerson == null){
+        if (dbPerson == null) {
             throw new PersonNotFoundException();
+        } else {
+            dbPerson.setFirstName(person.getFirstName());
+            dbPerson.setLastName(person.getLastName());
+            dbPerson.setSex(person.getSex());
+            dbPerson.setPhoneNumber(person.getPhoneNumber());
+            dbPerson.setEmailAddress(person.getEmailAddress());
+            dbPerson.setCity(person.getCity());
+            dbPerson.setCountry(person.getCountry());
         }
-        dbPerson.setFirstName(person.getFirstName());
-        dbPerson.setLastName(person.getLastName());
-        dbPerson.setSex(person.getSex());
-        dbPerson.setPhoneNumber(person.getPhoneNumber());
-        dbPerson.setEmailAddress(person.getEmailAddress());
-        dbPerson.setAddresses(person.getAddresses());
     }
 
-    public void delete(Long id){
-        Person person = personRepository.findOneWithAddresses(id);
+    public void delete(Long id) {
+        Person person = personRepository.findOne(id);
 
-        if (person == null){
+        if (person == null) {
             throw new PersonNotFoundException();
+        } else {
+            personRepository.delete(person);
         }
-        personRepository.delete(person);
+
     }
 }

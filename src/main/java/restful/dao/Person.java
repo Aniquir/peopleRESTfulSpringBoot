@@ -1,5 +1,7 @@
 package restful.dao;
 
+import restful.app.Controller.PersonController;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -7,9 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "PERSON")
-public class Person implements Serializable{
-// after good working of person_id with address, check this
-    private static final long serialVersionUID = 1907454466274204564L;
+public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,20 +26,22 @@ public class Person implements Serializable{
     private Integer phoneNumber;
     @Column(name = "EMAIL_ADDRESS")
     private String emailAddress;
-
-    @Column(name = "ADDRESS")
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Address> addresses = new HashSet<>();
+    @Column(name = "CITY")
+    private String city;
+    @Column(name = "COUNTRY")
+    private String country;
 
     public Person() {
     }
 
-    public Person(String firstName, String lastName, String sex, Integer phoneNumber, String emailAddress) {
+    public Person(String firstName, String lastName, String sex, Integer phoneNumber, String emailAddress, String city, String country) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.sex = sex;
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;
+        this.city = city;
+        this.country = country;
     }
 
     public Long getId() {
@@ -90,19 +92,20 @@ public class Person implements Serializable{
         this.emailAddress = emailAddress;
     }
 
-    public Set<Address> getAddresses() {
-        return addresses;
+    public String getCity() {
+        return city;
     }
 
-    public void setAddresses(Set<Address> addresses) {
-        this.addresses = addresses;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public void addAddress(Address address){
-        if(this.addresses == null){
-            this.addresses = new HashSet<>(0);
-        }
-        addresses.add(address);
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     @Override
@@ -114,7 +117,6 @@ public class Person implements Serializable{
                 ", sex=" + sex +
                 ", phoneNumber=" + phoneNumber +
                 ", emailAddress='" + emailAddress + '\'' +
-                ", addresses=" + addresses +
                 '}';
     }
 }
