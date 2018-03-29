@@ -34,6 +34,7 @@ public class PersonCommandService {
             dbPerson.setCity(person.getCity());
             dbPerson.setCountry(person.getCountry());
         }
+        personRepository.save(dbPerson);
     }
 
     public void delete(Long id) {
